@@ -50,6 +50,7 @@ const header_methods = new Map([
 // reasons
 // todo move these into their own namespace
 const FINGERPRINTING = 'fingerprinting',
+  INTERACTION = 'interaction',
   USER_HOST_DEACTIVATE = 'user_host_deactivate',
   USER_URL_DEACTIVATE = 'user_url_deactivate',
   BLOCK = 'block',
@@ -86,6 +87,7 @@ Object.assign(exports, {
   reasons,
   request_methods,
   header_methods,
+  INTERACTION,
   FINGERPRINTING,
   FINGERPRINTING_PATH,
   USER_HOST_DEACTIVATE,
