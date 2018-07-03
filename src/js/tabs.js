@@ -75,6 +75,14 @@ class Tab extends listenerMixin(Map) {
     this.interactionWhiteList.add(hostname);
   }
 
+  isThirdParty(hostname) {
+    if (!this.interactionWhiteList.has(hostname)) {
+      let tabhost = this.get(0).urlObj.hostname
+      return isThirdParty(tabhost, hostname);
+    }
+    return false;
+  }
+
   // merge from anotherTab, don't overite own values
   merge(otherTab) {
     this.headerCounts.merge(otherTab.headerCounts);
@@ -255,8 +263,7 @@ class Tabs {
 
   isThirdParty(tabId, hostname) {
     try {
-      let tabhost = this.getFrame(tabId, 0).urlObj.hostname
-      return isThirdParty(tabhost, hostname);
+      return this.getTab(tabId).isThirdParty(hostname);
     } catch (e) {
       log(`error getting tab data for tabId ${tabId} with error ${e.stack}`);
       return false;
